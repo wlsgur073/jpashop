@@ -210,6 +210,6 @@ gradle-app.setting
 *.hprof
 
 # Jrebel
-/rebel.xml
+/src/main/resources/rebel.xml
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,visualstudiocode,intellij+all,gradle,git
