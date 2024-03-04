@@ -1,6 +1,7 @@
 package jpabook.jpashop;
 
-import org.assertj.core.api.Assertions;
+import jpabook.jpashop.domain.Member;
+import jpabook.jpashop.domain.MemberRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ class MemberRepositoryTest {
     void testMember() throws Exception {
         //given
         Member member = new Member();
-        member.setUsername("memberA");
+        member.setName("memberA");
 
         //when
         Long saveId = memberRepository.save(member);
@@ -32,7 +33,7 @@ class MemberRepositoryTest {
 
         //then
         assertThat(findMember.getId()).isEqualTo(member.getId());
-        assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
+        assertThat(findMember.getName()).isEqualTo(member.getName());
 
         /*
         * 같은 트랜잭션 안에서 meber를 저장하고 조회하면 영속성 컨텍스트가 똑같다
