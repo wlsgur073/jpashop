@@ -1,7 +1,6 @@
 package jpabook.jpashop.domain;
 
 import jakarta.persistence.*;
-import jpabook.jpashop.domain.item.Address;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,7 +18,7 @@ public class Member {
 
     private String name;
 
-    @Embedded
+    @Embedded // 내장 타입이라는 걸 명시해줌
     private Address address;
 
     @OneToMany(mappedBy = "member") // order  클래스에 있는 meber 필드에 매핑하겠다는 의미
