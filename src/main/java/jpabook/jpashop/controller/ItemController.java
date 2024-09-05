@@ -1,12 +1,15 @@
 package jpabook.jpashop.controller;
 
 import jpabook.jpashop.domain.item.Book;
+import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -24,8 +27,8 @@ public class ItemController {
     public String create(BookForm form) {
 
         /*
-        * 해당 부분은 create를 만들어서 setter 기능을 대체할 수 있는 method를 만들어주는 것이 좋은 설계이다.
-        * */
+         * 해당 부분은 create를 만들어서 setter 기능을 대체할 수 있는 method를 만들어주는 것이 좋은 설계이다.
+         * */
         Book book = new Book();
         book.setName(form.getName());
         book.setPrice(form.getPrice());
@@ -35,5 +38,12 @@ public class ItemController {
 
         itemService.saveItem(book);
         return "redirect:/items";
+    }
+
+    @GetMapping("/items")
+    public String list(Model model) {
+        List<Item> items = itemService.findItems();
+        model.addAttribute("items", items);
+        return "items/itemList";
     }
 }
